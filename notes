@@ -1,0 +1,179 @@
+
+{easyredmine、bugzilla、e-learning、svn、wiki}:  huxy0510   123HUxiyang    skype: huxy0510@outlook.com   12345huxiyang  NC: huxy0510   123@huxiyang
+
+http://i.thundersoft.com/wiki/index.php/SCM%E7%9B%B8%E5%85%B3  安装repo 记得要加权限 chmod 777 repo
+
+西按Gerrit帐号：huxy0510   ThunderSoft@88
+
+repo sync -j4;make update-api;source build/envsetup.sh;lunch 14;make -j4
+
+/home/huxiyang/code_songxia/development/ide/eclipse   						导项目.classpath考到根目录在倒
+
+sudo apt-get install thunderbird-locale-uk thunderbird-locale-vi thunderbird-locale-zh-cn   	Thunderbird邮箱设置中文
+
+svn co http://192.168.9.128:8000/svn/ODM-P/Watling/02.Development/Requirement/From%20%e6%9d%be%e4%b8%8bownCloud/Documents_from_docomo/
+
+
+Eclipse快捷键
+Ctrl+Alt+H	如果你想知道一个类的方法到底被那些其他的类调用,最终产生一个调用关系树。
+Ctrl+左键	用来查看变量、方法、类的定义
+Ctrl+O		列出其方法和成员变量。提示：再多按一次Ctrl+O("Outline")，可以列出该类继承的方法和变量。
+Ctrl+T		查看一个类的继承关系树，是自顶向下的，再多按一次Ctrl+T(Tree), 会换成自底向上的显示结构。可以查看到有这个同名方法的父类、子类、接口。
+Alt+左右键	层层跟踪，想浏览器的前进和后退按钮一样。
+Ctrl+Shift+O 	导入包
+
+
+
+
+
+git add -A  				保存所有的修改
+git add .   				保存新的添加和修改，但是不包括删除
+git add -u   				保存修改和删除，但是不包括新建文件。
+git reset --hard commitId		将本地代码回退到指定的（commitId）代码位置
+git branch -vv				查看关联的远程分支	 
+git stash  				#保存当前工作现场
+git stash list 				#查看保存的工作现场列表
+git stash pop 				#还原最近的一次工作现场
+git reset --hard HEAD  			放弃未提交的修改
+git config --list			列出git的配置
+git diff > diff.txt			提取处修改后的内容（diff.patch）
+
+
+ADB 命令
+启动Activity					adb shell am start -n 包名/包名＋类名（-n 类名,-a action,-d date,-m MIME-TYPE,-c category,-e 扩展数据,等）。 
+给手机安装xxx.apk				adb install [-r] [-s] xxx.apk  	-r表示重新安装apk -s表示安装到sdcard，默认安装到内部存器		
+删除已安装的apk					adb uninstall [-k] xxx.apk  -k 表示之删除应用程序，保留其数据和缓存目录		
+从手机拉取图片到temp目录				adb pull /sdcard/Pictures/Screenshots/ ~/temp/  	
+列出当前手机中运行的service			adb shell service list
+录视频 	/sdcard/demo.mp4（路径）		adb shell screenrecord   				
+输出信息的开始部分就是所有运行的service		adb shell dumpsys > log.txt
+将打印出的log保存在/temp/log.txt 		adb logcat -v time > log.txt
+						adb logcat -v threadtime | grep 'AndroidBeam'
+						adb logcat -v threadtime -b all | grep 'AndroidBeam'
+查看最顶端的activity				adb shell dumpsys activity top | less 				
+查看当前正在运行的Activity			adb shell dumpsys activity或adb logcat | grep ActivityManager  再配和 grep 命令，基本就没啥问题了，如下：
+						adb shell dumpsys activity | grep mFocusedActivity  再配和 grep 命令，基本就没啥问题了。
+输出当前获得焦点的Activity      			adb shell dumpsys activity |grep "mFocusedActivity"    		
+  				mFocusedActivity: ActivityRecord{1de41bcf u0 com.nttdocomo.android.felicamenu/.FeliCaMenuAfp t51} 
+						find -name "*.xml"|xargs grep "listPreferredItemHeight"
+
+
+
+
+
+杂乱
+source ~/.bashrc 							使自己配置的环境变量生效
+gedit ~/.bashrc  							打开文件
+ps -aux | grep 加名字  							查看对应名字的进程号     杀死进程  kill -9 加进程号
+dpkg -i file.deb 或  apt-get install file.deb  				安装文件(beyond)
+ode/edit/out/target/product/P-01J/system/app/DocomoId$ nautilus . 	打开.apk所在文件路径 
+root@P-01J:/ # dd if=/dev/zero of=/data/data.f 				使手机内存填满
+Log.d("huxiyang", Log.getStackTraceString(new Throwable())); 		打印堆栈信息（可以打印出调用该方法的类对应的行数等信息）
+android.util.Log.i("huxiyang", "intent "+i.getAction());
+
+（sudo） tar -zxvf  java-7-openjdk-amd64.tar.gz  			解压文件   （-C  /usr/lib/java/jdk1.7）-C 复制
+sudo vmware-installer --uninstall-product vmware-workstation   	 	卸载vmware-workstation 
+sudo /etc/init.d/apache2 restart    					重启Apache服务器
+sudo passwd -u root 							打开终端开启root账户
+sudo dpkg  -r 软件名 						卸载自己deb包安装的软件或者apt-get 安装的软件(sudo apt-get remove VirtualBox )
+
+apt-get install (-d) xxx 					安装xxx  -d表示仅下载，-f 表示强制安装   安装到 /data/local/tmp/ 目录下（但不保存文件）  
+apt-get remove xxx 						卸载xxx  
+apt-get update 							更新软件信息数据库
+apt-get upgrade 						进行系统升级  
+apt-cache search 						搜索软件包 
+
+aapt dump badging <file_path.apk>   				查看apk文件的包名，版本号等等
+aapt dump xmltree <file_path.apk> res/***.xml			查看指定apk的指定xml文件。
+aapt d(dump) xmltree apk名称  AndroidManifest.xml > tmp 	
+		将apk的AndroidManifest.xml文件输出到tmp.txt中，用vim tmp打开，打开后搜索Launch能找到根activity全路径，在data/data/j能找到apk的包名，就可以使用
+		adb shell am start -n jp.id_credit_afp.android.devappli/jp.id_credit_sp.android.activity.IDLaunchActivity启动
+
+
+
+拉取代码的三种方式
+
+   git fetch ssh://huxy0510.ts@aries.psn-dom.pbs-itsv.com:29418/platform/packages/services/Telecomm refs/changes/36/4536/4 && git checkout FETCH_HEAD
+   git clone ssh://huxy0510.ts@aries.psn-dom.pbs-itsv.com:29418/platform/packages/services/Telecomm -b amethyst-lp
+repo init -u ssh://huxy0510@192.168.122.228:29418/Panasonic/platform/manifest -b amethyst-lp -m amethyst-lp-latest.xml --repo-url=https://gerrit-google.tuna.tsinghua.edu.cn/git-repo
+
+拉取部分代码：
+1. 切换到对应路径（存放路径）
+2. git remote -v  （查路径）
+3. repo init
+4. repo sync 【vendor/panasonic/apps/dcm_nexti】查出拉的路径
+	循环执行repo sync
+$?=1; 
+while [ $? -ne 0 ] ; 
+do  repo sync -j4;make update-api;source build/envsetup.sh;lunch 14;make -j4 ; 
+done
+
+
+问题：
+huxiyang@huxiyang-OptiPlex-3020:~$ adb shell
+error: insufficient permissions for device
+
+解决（lsusb）：
+sudo gedit /etc/udev/rules.d/51-android.rules 
+   [SUBSYSTEM=="usb", ATTR{idVendor}=="05c6", ATTRS{idProduct}=="9091", MODE="0666", GROUP="plugdev" ]  
+sudo chmod a+r /etc/udev/rules.d/51-android.rules  
+sudo service udev restart  （需要重启udev ）
+adb devices
+
+
+错误：
+Gyp action: third_party_WebKit_Source_platform_platform_generated_gyp_make_platform_generated_target_ColorData (out/target/product/generic/obj/GYP/shared_intermediates/blink/platform/ColorData.cpp)
+/bin/bash: gperf: 未找到命令
+make: *** [out/target/product/generic/obj/GYP/shared_intermediates/blink/platform/ColorData.cpp] 错误 127
+make: *** 正在等待未完成的任务....
+
+#### make failed to build some targets (07:38 (mm:ss)) ####
+
+解决：make clean -j4    make -j4  
+
+
+skype安装
+
+sudo apt-get remove skype skype-bin:i386 skype:i386
+sudo apt-get install sni-qt:i386
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get install gdebi
+wget download.skype.com/linux/skype-ubuntu-precise_4.3.0.37-1_i386.deb
+sudo gdebi skype-ubuntu-precise_4.3.0.37-1_i386.deb
+sudo apt-get install unar
+
+解压后乱码 
+sudo apt-get install unar 	安装unar
+lsar pack.zip  			查看压缩文件
+unar pack.zip  			正式解压
+
+ubuntu14.04安装sogou输入法  http://blog.csdn.net/perfect2011/article/details/41365481
+
+http://blog.csdn.net/droyon/article/details/45701257   	NetworkTimeUpdateService初始化时间同步环境 
+http://blog.csdn.net/lindir/article/details/7973700	(自动更新时间)为什么不能更新时区，却能更新时间
+http://jingyan.baidu.com/article/9c69d48fb9fd7b13c8024e6b.html  安装ssh
+
+=============================================================================================================
+给button设置鼠标悬浮效果和选中效果
+    bottomButton.setOnHoverListener(mOnHoverListener);
+
+    private View.OnHoverListener mOnHoverListener = new View.OnHoverListener() {
+        @Override
+            public boolean onHover(View view, MotionEvent motionEvent) {
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_HOVER_ENTER:
+                    if(isAdded()) {			//isAdded()是Fragment中的方法
+                        bottomButton.setBackground(getResources().getDrawable(R.drawable.btn_search_pressed));
+                    }
+                    break;
+                case MotionEvent.ACTION_HOVER_EXIT:
+                    if(isAdded()){
+                        bottomButton.setBackground(getResources().getDrawable(R.drawable.btn_search));
+                    }
+                    break;
+            }
+            return false;
+        }
+    };
+=============================================================================================================
